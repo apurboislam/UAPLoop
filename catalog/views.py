@@ -71,7 +71,7 @@ def listing_requests(request, pk):
 @login_required
 def accept_request(request, pk):
     buy_request = get_object_or_404(BuyRequest, pk=pk, listing__seller=request.user)
-    if request.method == 'POST':
+    if request.method == 'POST' and not buy_request.listing.is_sold:
         buy_request.status = 'accepted'
         buy_request.save()
         buy_request.listing.is_sold = True

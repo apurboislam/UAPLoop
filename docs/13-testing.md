@@ -10,7 +10,7 @@ Run all tests:
 .venv/bin/python manage.py test
 ```
 
-Result at the time of writing: **15 tests, all pass.**
+Result at the time of writing: **16 tests, all pass.**
 
 Run one test:
 
@@ -50,6 +50,7 @@ self.assertContains(response, 'Page not found', status_code=404)
 | `test_rent_without_period_rejected` | A rent listing without a period is refused |
 | `test_donate_is_free_and_marked_donated` | Donate listings show "Free" and "Donated" |
 | `test_contact_hidden_until_request_then_seller_accepts` | Phone is hidden until a request, then shown; seller can accept |
+| `test_cannot_accept_after_sold` | Once one request is accepted, a second one cannot be accepted |
 
 ### inbox/tests.py
 

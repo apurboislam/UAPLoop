@@ -215,7 +215,7 @@ Only Bootstrap's bundle (for the collapsing navbar) and the small polling script
 ## H. Testing and quality
 
 **Q61. How did you test the project?**
-15 automated Django tests covering registration, error pages, login redirects, moderation, listing rules, contact privacy, chat privacy, the live-chat endpoint and review rules. All pass. Plus manual testing in the browser.
+16 automated Django tests covering registration, error pages, login redirects, moderation, listing rules, contact privacy, chat privacy, the live-chat endpoint and review rules. All pass. Plus manual testing in the browser.
 
 **Q62. Do tests touch the real database?**
 No. Django creates a temporary test database and deletes it afterwards.

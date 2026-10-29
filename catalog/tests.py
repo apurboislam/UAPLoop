@@ -2,7 +2,7 @@ from django.test import TestCase
 from django.urls import reverse
 
 from accounts.models import User
-from .models import Category, Listing
+from .models import BuyRequest, Category, Listing
 
 
 class ListingTest(TestCase):
@@ -69,3 +69,13 @@ class BuyReviewTest(TestCase):
         self.client.post(reverse('accept_request', args=[buy_request.pk]))
         self.listing.refresh_from_db()
         self.assertTrue(self.listing.is_sold)
+
+    def test_cannot_accept_after_sold(self):
+        other = User.objects.create(full_name='Other', university_id='3', phone='01700000012', email='o@example.com')
+        first = BuyRequest.objects.create(listing=self.listing, buyer=self.buyer, amount=450)
+        second = BuyRequest.objects.create(listing=self.listing, buyer=other, amount=480)
+        self.client.force_login(self.seller)
+        self.client.post(reverse('accept_request', args=[first.pk]))
+        self.client.post(reverse('accept_request', args=[second.pk]))
+        second.refresh_from_db()
+        self.assertEqual(second.status, 'pending')

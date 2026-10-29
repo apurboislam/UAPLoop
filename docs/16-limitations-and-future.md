@@ -10,7 +10,6 @@ Every project has limits. Knowing them shows you understand your own code.
 | Registration does not run password strength checks | `RegisterForm` sets the password without calling `validate_password`, so the validators in settings are not applied there | Call `django.contrib.auth.password_validation.validate_password` in `RegisterForm.clean` |
 | No password reset by email | No email server in a local project | Use Django's built-in password reset views with an SMTP server |
 | Sellers cannot edit listings | Simpler and safer (no change after approval) | Add an edit view that sets the status back to pending |
-| Seller could accept more than one request by sending POSTs by hand | The Accept button hides after the item is sold, but `accept_request` does not check `is_sold` itself | Add `and not buy_request.listing.is_sold` to the check in `accept_request` |
 | Chat uses polling every 0.5 s | No extra libraries or servers needed | Use WebSockets (Django Channels) for large numbers of users |
 | No notifications for new messages | Out of scope for v1 | Show an unread count in the navbar |
 | Admin listing page does not filter "pending" by default | Kept out on purpose | Admin uses the status filter on the right |

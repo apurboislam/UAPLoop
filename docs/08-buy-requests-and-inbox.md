@@ -37,7 +37,7 @@ Checks: the listing must be approved, not sold, and **not your own**. `get_or_cr
 - `listing_requests`: shows all requests for **your** listing (`seller=request.user` check), with buyer name, phone, amount, status, a Chat link and an Accept button.
 - `accept_request`: POST only, and the request must belong to your listing (`listing__seller=request.user`). It sets the request to `accepted` and the listing to `is_sold = True`.
 
-The Accept button only shows while the request is pending and the listing is not sold.
+The Accept button only shows while the request is pending and the listing is not sold. The view also checks `is_sold` itself, so once one request is accepted, no other request can be accepted, even by sending a POST by hand.
 
 ## 8.4 The inbox (`inbox/views.py`)
 
