@@ -1,10 +1,11 @@
+import os
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 def read_env():
-    env = {}
+    env = dict(os.environ)
     path = BASE_DIR / '.env'
     if path.exists():
         for line in path.read_text().splitlines():
@@ -20,7 +21,7 @@ SECRET_KEY = ENV.get('SECRET_KEY') or 'django-insecure-local-dev-key'
 
 DEBUG = ENV.get('DEBUG', '1') == '1'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.ondigitalocean.app']
 
 ADMIN_EMAIL = ENV.get('ADMIN_EMAIL', '')
 ADMIN_PASSWORD = ENV.get('ADMIN_PASSWORD', '')
@@ -40,6 +41,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -95,8 +97,11 @@ USE_I18N = True
 USE_TZ = True
 
 STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+CSRF_TRUSTED_ORIGINS = ['https://*.ondigitalocean.app']
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
