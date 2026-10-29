@@ -3,7 +3,7 @@
 Plain Django templates and the Bootstrap 5 stylesheet only. The app runs locally (`runserver` on localhost), no hosting, no build step.
 
 ## Rules
-- Load only the Bootstrap CSS file (one `<link>` in `base.html`). No Bootstrap JavaScript, so no carousel, modal, dropdown, collapse or toast.
+- Load the Bootstrap CSS file and the Bootstrap JavaScript bundle in `base.html`. The bundle is used for the collapsing navbar (hamburger menu on small screens).
 - No custom CSS file, no theme changes, no icon library, no extra frontend libraries.
 - Use only basic classes: `container`, `row`, `col-*`, `navbar`, `card`, `btn`, `form-control`, `form-select`, `table`, `badge`, `alert`, `list-group`.
 - CSS source: the Bootstrap CDN link is simplest. To work offline, save `bootstrap.min.css` into `static/` and link that instead.

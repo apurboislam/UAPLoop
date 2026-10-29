@@ -2,6 +2,8 @@ from django import forms
 from django.contrib.auth.forms import AuthenticationForm
 from django.utils import timezone
 
+from config.forms import add_bootstrap
+
 from .models import User
 
 
@@ -16,6 +18,10 @@ class LoginForm(AuthenticationForm):
         'inactive': 'Your account is not active. Contact admin.',
     }
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        add_bootstrap(self)
+
 
 class RegisterForm(forms.Form):
     university_id = forms.CharField(max_length=20)
@@ -24,6 +30,10 @@ class RegisterForm(forms.Form):
     email = forms.EmailField()
     password = forms.CharField(widget=forms.PasswordInput)
     confirm_password = forms.CharField(widget=forms.PasswordInput)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        add_bootstrap(self)
 
     def clean(self):
         data = super().clean()

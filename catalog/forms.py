@@ -1,5 +1,6 @@
 from django import forms
 
+from config.forms import add_bootstrap
 from .models import BuyRequest, Category, Listing
 
 MAX_PHOTOS = 5
@@ -17,6 +18,7 @@ class ListingForm(forms.ModelForm):
         self.fields['price'].label = 'Price (Tk)'
         self.fields['rent_period'].help_text = 'Only for rent'
         self.fields['exchange_for'].help_text = 'Only for exchange'
+        add_bootstrap(self)
 
     def clean(self):
         data = super().clean()
@@ -50,6 +52,7 @@ class BuyRequestForm(forms.ModelForm):
     def __init__(self, *args, listing=None, **kwargs):
         super().__init__(*args, **kwargs)
         self.listing = listing
+        add_bootstrap(self)
 
     def clean(self):
         data = super().clean()

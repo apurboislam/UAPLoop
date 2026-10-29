@@ -20,23 +20,25 @@
   </div>
   <div class="col-md-2"><button class="btn btn-primary w-100" type="submit">Filter</button></div>
 </form>
-<div class="row">
+<div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6 g-3 mb-3">
   {% for listing in page %}
-  <div class="col-md-4 mb-4">
-    <div class="card">
-      {% if listing.cover %}
-      <img src="{{ listing.cover.image.url }}" class="card-img-top" alt="{{ listing.title }}">
-      {% else %}
-      <p class="card-img-top text-center py-5 mb-0">No photo</p>
-      {% endif %}
+  <div class="col">
+    <div class="card h-100">
+      <div class="ratio ratio-1x1">
+        {% if listing.cover %}
+        <img src="{{ listing.cover.image.url }}" class="card-img-top object-fit-cover" alt="{{ listing.title }}">
+        {% else %}
+        <div class="d-flex align-items-center justify-content-center bg-light">No photo</div>
+        {% endif %}
+      </div>
       <div class="card-body">
-        <h5 class="card-title"><a href="{% url 'detail' listing.pk %}">{{ listing.title }}</a></h5>
-        <p class="card-text">{{ listing.price_text }} <span class="badge text-bg-secondary">{{ listing.get_listing_type_display }}</span> {% if listing.is_sold %}<span class="badge text-bg-danger">{{ listing.done_text }}</span>{% endif %}</p>
+        <h6 class="card-title text-break"><a href="{% url 'detail' listing.pk %}">{{ listing.title }}</a></h6>
+        <p class="card-text small">{{ listing.price_text }} <span class="badge text-bg-secondary">{{ listing.get_listing_type_display }}</span> {% if listing.is_sold %}<span class="badge text-bg-danger">{{ listing.done_text }}</span>{% endif %}</p>
       </div>
     </div>
   </div>
   {% empty %}
-  <p>No listings found.</p>
+  <p class="col-12">No listings found.</p>
   {% endfor %}
 </div>
 <p>

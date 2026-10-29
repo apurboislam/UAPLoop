@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2>{{ buy_request.listing.title }}</h2>
+<h2 class="text-break">{{ buy_request.listing.title }}</h2>
 <p>
   Chat with {{ other.full_name }} ({{ other.phone }})<br>
   Buyer request{% if buy_request.amount %}: Tk {{ buy_request.amount|floatformat:"-2" }}{% endif %}
@@ -10,7 +10,7 @@
 <div class="card mb-3">
   <div class="card-body" id="chat" data-url="{% url 'new_messages' buy_request.pk %}" data-after="{{ last_id }}">
     {% for message in chat_messages %}
-    <p class="{% if message.sender == user %}text-end{% endif %}">
+    <p class="text-break {% if message.sender == user %}text-end{% endif %}">
       <strong>{% if message.sender == user %}You{% else %}{{ message.sender.full_name }}{% endif %}</strong>
       <small>{{ message.created_at|date:"d M, H:i" }}</small><br>
       {{ message.text|linebreaksbr }}
@@ -32,7 +32,9 @@ var after = chat.dataset.after;
 function addMessage(message) {
   var p = document.createElement('p');
   if (message.mine) {
-    p.className = 'text-end';
+    p.className = 'text-break text-end';
+  } else {
+    p.className = 'text-break';
   }
   var name = document.createElement('strong');
   name.textContent = message.name;
