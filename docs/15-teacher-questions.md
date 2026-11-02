@@ -129,8 +129,8 @@ To avoid clashes when two people upload `IMG_001.jpg`, to avoid unsafe names, an
 **Q37. What happens to photos when a listing is removed?**
 The view deletes each file from disk before deleting the listing, because Django deletes database rows but not files.
 
-**Q38. Why can't sellers edit listings?**
-To keep it simple and safe: an edited listing would need re-approval, or a seller could change an approved listing into something bad. Sellers can remove and post again.
+**Q38. What happens when a seller edits a listing?**
+Any change sends it back to pending, so it is hidden until the admin approves it again. Otherwise a seller could change an approved listing into something bad. Sold listings cannot be edited, and to change photos the seller removes the listing and posts again.
 
 **Q39. What is the difference between "Accept request" and "Mark sold"?**
 Accept is for a buyer inside the app: it marks the request accepted (which enables the buyer's review) and marks the item sold. Mark sold is for items sold outside the app.
@@ -240,7 +240,7 @@ Set `DEBUG=0`, set `ALLOWED_HOSTS`, use a strong `SECRET_KEY`, use PostgreSQL, r
 For a single university, yes, after moving to PostgreSQL. For much larger scale we would add caching, move chat to WebSockets and photos to cloud storage.
 
 **Q68. What would you add next?**
-Login/registration rate limiting, password reset by email, editing listings with re-approval, notifications for new messages, multiple categories filter, and a report-listing button. See [16-limitations-and-future.md](16-limitations-and-future.md).
+Login/registration rate limiting, password reset by email, notifications for new messages, multiple categories filter, and a report-listing button. See [16-limitations-and-future.md](16-limitations-and-future.md).
 
 **Q69. What did you learn?**
 Django's MVT structure, ORM and migrations, custom user models, form validation, authentication and sessions, web security basics (CSRF, XSS, SQL injection), file uploads, AJAX polling with fetch, responsive design with Bootstrap, and automated testing.

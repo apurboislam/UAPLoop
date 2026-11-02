@@ -118,8 +118,10 @@ stateDiagram-v2
     approved --> [*] : seller removes
     pending --> [*] : seller removes
     rejected --> [*] : seller removes
+    approved --> pending : seller edits
+    rejected --> pending : seller edits
 ```
 
 - Only `approved` is public. Enforce via one custom manager, `Listing.objects.public()`; no view filters on status by hand.
-- **No editing** in v1. To change something, the seller removes the listing and posts a new one (it goes through approval again).
+- **Editing** works until the listing is sold. Any change sets `status` back to `pending` and clears `reject_reason`, `reviewed_by` and `reviewed_at`. Photos cannot be edited: the seller removes the listing and posts a new one.
 - **Remove = delete** the row and its image files from disk. Sold/rented items are simply removed.

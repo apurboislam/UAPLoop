@@ -42,11 +42,12 @@ Bootstrap supplies the layout and components. The local stylesheet only adds sim
 | `catalog/browse.html` | browse | Search and filters, cards with handover place and View item buttons, empty state links, Previous/Next |
 | `catalog/detail.html` | detail | Photos, handover place, request box with action buttons, reviews |
 | `catalog/new.html` | new_listing | Listing form with required handover place, photo input, Submit listing button |
-| `catalog/mine.html` | my_listings | Table of own listings with View requests and Remove buttons |
+| `catalog/edit.html` | edit_listing | Listing form with current values, Save changes and Cancel buttons |
+| `catalog/mine.html` | my_listings | Table of own listings with View requests, Edit and Remove buttons |
 | `catalog/requests.html` | listing_requests | Table of buy requests with Open chat and Accept buttons |
 | `catalog/remove.html` | remove_listing | Confirmation |
 | `inbox/inbox.html` | inbox | Table of conversations with Open chat buttons and Browse listings empty state |
-| `inbox/conversation.html` | conversation | Messages, View item and Back to inbox buttons, Send message form, live update script |
+| `inbox/conversation.html` | conversation | Messages, View item (only while approved) and Back to inbox buttons, Send message form, live update script |
 | `reviews/section.html` | included in detail | Review form and list |
 
 ## 11.5 Useful template features we use

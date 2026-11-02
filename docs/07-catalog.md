@@ -9,6 +9,7 @@ Student submits ──▶ PENDING ──admin approves──▶ APPROVED ──s
                        │                           │        or "Mark sold"
                        └──admin rejects──▶ REJECTED (with reason)
 At any time the seller can REMOVE (delete) it.
+Until it is sold, the seller can EDIT it. Any change sends it back to PENDING.
 ```
 
 - **Pending** and **rejected** listings are visible only to their seller (on "My listings") and the admin.
@@ -112,7 +113,7 @@ The handover place appears in the listing details. Reviews are added to the page
 
 ## 7.5 My listings (`my_listings` view)
 
-Shows **all** of the student's own listings (any status) in a table: title, status badge (green approved, red rejected, yellow pending), reject reason, "Mark sold" button, **View requests** button with the count, and **Remove** button. When the table is empty it offers **Create a listing**.
+Shows **all** of the student's own listings (any status) in a table: title, status badge (green approved, red rejected, yellow pending), reject reason, "Mark sold" button, **View requests** button with the count, **Edit** button (hidden once sold) and **Remove** button. When the table is empty it offers **Create a listing**.
 
 Note it uses `Listing.objects.filter(seller=request.user)`, **not** `public()`, because sellers must see their own pending and rejected listings.
 
@@ -140,3 +141,28 @@ Why delete files by hand? Django deletes database rows but **not** the files on 
 - **Approve** action: select many pending listings and approve them in one click. It also records which admin approved and when.
 - To **reject**: open a listing, change status to Rejected and type a reason. `save_model` records `reviewed_by` and `reviewed_at` whenever the status changes.
 - Buy requests are also registered so the admin can view them.
+
+## 7.9 Edit (`edit_listing` view)
+
+```python
+listing = get_object_or_404(Listing, pk=pk, seller=request.user)
+form = ListingForm(request.POST or None, instance=listing)
+```
+
+`instance=listing` fills the same `ListingForm` with the current values and makes `save()` update that row instead of creating a new one. All the form checks from section 7.2 still apply.
+
+| Situation | What happens |
+|-----------|--------------|
+| Someone else's listing | 404, because of the `seller=request.user` ownership check |
+| Listing is already sold | Error message and back to "My listings" |
+| The form has errors | The form is shown again and the listing does not change |
+| Saved with no changes | Nothing changes, so an approved listing stays public |
+| Saved with changes | Status becomes `pending`, and the reject reason and review details are cleared |
+
+Going back to `pending` is the important rule: a seller cannot get a listing approved and then change it into something the admin never saw. While it is pending, the public page returns 404 and the chat page hides its **View item** button. Existing buy requests and chats are kept.
+
+`status` and `seller` are not form fields, so posting them by hand does nothing.
+
+If the admin has since hidden the listing's category, it stays selectable on that listing's own edit form, so the seller is not forced to change it.
+
+Photos cannot be changed here. To change photos, the seller removes the listing and posts it again.

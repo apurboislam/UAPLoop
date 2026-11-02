@@ -15,7 +15,7 @@ All Python tooling lives in the project venv at `.venv/` (never `pip install` gl
 
 ## Status
 
-Basic v1 is built: `accounts` (custom User, register/login/logout, `ensure_admin` command), `reviews` (verified-buyer reviews with admin approval, shown on the listing detail page) `inbox` (one chat per buy request, between that buyer and the item's seller) and `catalog` (Category, Listing, ListingImage, browse/detail/new/mine/remove views, Django admin moderation). Each app owns its models, views, urls, forms, admin, templates (`<app>/templates/<app>/`) and tests. Only the shared layout `templates/base.html` lives at project level. Config comes from `.env` (copy `.env.example`). First run: `migrate`, then `ensure_admin`.
+Basic v1 is built: `accounts` (custom User, register/login/logout, `ensure_admin` command), `reviews` (verified-buyer reviews with admin approval, shown on the listing detail page) `inbox` (one chat per buy request, between that buyer and the item's seller) and `catalog` (Category, Listing, ListingImage, browse/detail/new/edit/mine/remove views, Django admin moderation). Each app owns its models, views, urls, forms, admin, templates (`<app>/templates/<app>/`) and tests. Only the shared layout `templates/base.html` lives at project level. Config comes from `.env` (copy `.env.example`). First run: `migrate`, then `ensure_admin`.
 
 Not built yet (kept out on purpose): registration rate-limit, default `pending` filter in the listing admin, bulk Reject action with reason (set status and reason on the listing change page instead).
 

@@ -118,6 +118,7 @@ Bootstrap needs the CSS class `form-control` on inputs and `form-select` on drop
 | `/listing/<id>/requests/` | `catalog.listing_requests` | Yes (seller) | See who requested your item |
 | `/request/<id>/accept/` | `catalog.accept_request` | Yes (seller) | POST: accept a request, item becomes sold |
 | `/new/` | `catalog.new_listing` | Yes | Create a listing |
+| `/edit/<id>/` | `catalog.edit_listing` | Yes (seller) | Edit an unsold listing; any change needs approval again |
 | `/mine/` | `catalog.my_listings` | Yes | Your listings and their status |
 | `/sold/<id>/` | `catalog.mark_sold` | Yes (seller) | POST: mark sold without a request |
 | `/remove/<id>/` | `catalog.remove_listing` | Yes (seller) | Confirm page, then POST deletes |

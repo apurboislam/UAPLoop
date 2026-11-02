@@ -10,7 +10,7 @@ Run all tests:
 .venv/bin/python manage.py test
 ```
 
-The suite contains **18 tests**.
+The suite contains **28 tests**.
 
 Run one test:
 
@@ -53,6 +53,16 @@ self.assertContains(response, 'Page not found', status_code=404)
 | `test_donate_is_free_and_marked_donated` | Donate listings show "Free" and "Donated" |
 | `test_contact_hidden_until_request_then_seller_accepts` | Phone is hidden until a request, then shown; seller can accept |
 | `test_cannot_accept_after_sold` | Once one request is accepted, a second one cannot be accepted |
+| `test_form_opens_with_current_values` | The edit form shows the listing's current values |
+| `test_change_hides_listing_until_approved_again` | An edited listing goes back to pending and is hidden until approved |
+| `test_edit_clears_reject_reason` | Editing a rejected listing clears the old reason |
+| `test_save_without_changes_keeps_approval` | Saving with no changes keeps the listing approved |
+| `test_invalid_edit_changes_nothing` | An edit with form errors does not change the listing |
+| `test_seller_cannot_approve_by_posting_status` | Posting `status` or `seller` by hand is ignored |
+| `test_only_seller_can_edit` | Other students get 404 and logged-out users get 401 |
+| `test_sold_listing_cannot_be_edited` | Sold listings have no Edit button and cannot be edited |
+| `test_hidden_category_stays_selectable_on_own_listing` | A hidden category still works when editing its listing, but not on new listings |
+| `test_chat_hides_view_item_while_listing_is_pending` | The chat page does not link to a listing that is waiting for approval |
 
 ### inbox/tests.py
 

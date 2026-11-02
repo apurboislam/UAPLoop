@@ -24,7 +24,8 @@ Page templates live inside their app: `accounts/templates/accounts/`, `catalog/t
 | Register | One form: university ID, phone, full name, email, password, confirm password |
 | Login | One form: email, password |
 | New listing | One form: category select, type select, title, description, required handover place, price, rent period, exchange for, condition, photos, Submit listing button. Note: "Your listing will appear after admin approval" |
-| My listings | `table` with title, status `badge`, reject reason, View requests count and Remove buttons. No edit |
+| Edit listing | Same form as New listing with current values and no photos, Save changes and Cancel buttons. Note: any change needs admin approval again |
+| My listings | `table` with title, status `badge`, reject reason, View requests count, Edit (hidden once sold) and Remove buttons |
 | Remove listing | Small page asking "Are you sure?" with a Yes button (instead of a modal) |
 | Inbox | Conversations with Open chat buttons; empty state offers Browse listings |
 | Chat | Messages with View item, Back to inbox and Send message buttons |
