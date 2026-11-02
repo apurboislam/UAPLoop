@@ -8,6 +8,7 @@ UAPLoop/
 ├── .env                      Your private settings (not in git)
 ├── db.sqlite3                The database file (created by migrate, not in git)
 ├── media/                    Uploaded listing photos (not in git)
+├── static/                   Local stylesheet and the UAPLoop and UAP logos
 ├── CLAUDE.md, .ai/rules.md   Coding rules for the project
 ├── system-design/docs/       Planning notes written before coding
 ├── docs/                     This beginner documentation

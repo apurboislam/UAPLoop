@@ -92,6 +92,7 @@ Ordering is `sort_order`, then `name`.
 | `category` | Link to Category. `PROTECT`: a category with listings cannot be deleted (hide it instead) |
 | `title` | Up to 120 characters |
 | `description` | Long text |
+| `handover_place` | Required preferred handover place, up to 200 characters |
 | `listing_type` | `sell`, `exchange`, `rent`, `donate` |
 | `price` | Decimal, empty for exchange and donate |
 | `rent_period` | `day`, `week`, `month`, only for rent |
@@ -202,3 +203,5 @@ The star labels are built with one line: `[(n, '★' * n + '☆' * (5 - n)) for 
 ## 5.10 Migrations
 
 Each app starts with `0001_initial.py`. The required listing handover place is included in the catalog initial migration. Later model changes get a new migration generated with `makemigrations`.
+
+If your `db.sqlite3` was created before `handover_place` was added to `0001_initial.py`, `migrate` will not add that column to the existing table because the initial migration has already run. That database needs a separate migration before it can use the current code. A fresh setup creates the column when it runs the initial migration.

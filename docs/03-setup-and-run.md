@@ -62,7 +62,7 @@ Open `http://127.0.0.1:8000/` for the site and `http://127.0.0.1:8000/admin/` fo
 2. Add a **Category** (for example "Electronics").
 3. Add a **User** (a student) with full name, university ID, phone, email, status Active. Do not set a password: the student will do that.
 4. Log out, go to `/register/` and type the same university ID, phone, name and email, plus a new password.
-5. You are now logged in as the student. Click **New listing** and post something.
+5. You are now logged in as the student. Click **New listing**, fill the required handover place and post something.
 6. Log in to `/admin/` again, open Listings, select the new one and run the **Approve** action.
 7. The listing now appears on the home page.
 

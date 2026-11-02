@@ -39,14 +39,16 @@ Explained:
 3. `form.save(commit=False)`: build the listing but do not save yet, because we must add the seller first.
 4. `listing.seller = request.user`: the seller is **always** the logged-in user. It is not a form field, so nobody can post as someone else.
 5. Status is not set, so it uses the default `pending`.
-6. Each uploaded photo becomes a `ListingImage` with its position.
-7. Show a message and go to "My listings". This is the **Post/Redirect/Get** pattern: after a POST we redirect, so pressing refresh does not submit the form twice.
+6. The form requires a preferred handover place (up to 200 characters). The browse card and detail page both show it.
+7. Each uploaded photo becomes a `ListingImage` with its position.
+8. Show a message and go to "My listings". This is the **Post/Redirect/Get** pattern: after a POST we redirect, so pressing refresh does not submit the form twice.
 
 ### The form's checks (`ListingForm.clean`)
 
 | Rule | Why |
 |------|-----|
 | Category list shows only active categories | Admin can hide a category |
+| Handover place is required | Buyers can see where the seller prefers to hand over the item |
 | Sell and rent need a price | You must know the cost |
 | Rent needs a rent period | "Tk 100" means nothing without "per day/week/month" |
 | Exchange needs "exchange for" | Buyers must know what the seller wants |
@@ -86,6 +88,8 @@ query.pop('page', None)
 
 The Next link becomes `?q=casio&type=rent&page=2`.
 
+Each card shows the title, price, type and handover place, with a **View item** button. The search form has a **Search** button. When no results match active filters, the page offers **Clear filters**. With no listings and no filters, logged-in students see **Create a listing**.
+
 ## 7.4 Detail page (`detail` view)
 
 ```python
@@ -98,17 +102,17 @@ The page shows a different box depending on who is looking:
 
 | Who | What they see |
 |-----|---------------|
-| The seller | Link "See buy requests" |
-| A student who already requested | Seller name and **phone**, their offer and status, link to the chat |
+| The seller | **View requests** button |
+| A student who already requested | Seller name and **phone**, their offer and status, **Chat with seller** button |
 | Anyone, if the item is sold | "This item has been sold." |
-| Another logged-in student | "Request to buy" form (with amount for sell/rent) |
-| Visitor | "Login to request this item." |
+| Another logged-in student | **Send request** form (with amount for sell/rent) |
+| Visitor | **Log in to request** button that returns to this listing after login |
 
-Reviews are added to the page through `review_context()` from the reviews app (see [09-reviews.md](09-reviews.md)).
+The handover place appears in the listing details. Reviews are added to the page through `review_context()` from the reviews app (see [09-reviews.md](09-reviews.md)).
 
 ## 7.5 My listings (`my_listings` view)
 
-Shows **all** of the student's own listings (any status) in a table: title, status badge (green approved, red rejected, yellow pending), reject reason, "Mark sold" button, number of requests, Remove link.
+Shows **all** of the student's own listings (any status) in a table: title, status badge (green approved, red rejected, yellow pending), reject reason, "Mark sold" button, **View requests** button with the count, and **Remove** button. When the table is empty it offers **Create a listing**.
 
 Note it uses `Listing.objects.filter(seller=request.user)`, **not** `public()`, because sellers must see their own pending and rejected listings.
 

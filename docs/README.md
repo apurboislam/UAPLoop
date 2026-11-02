@@ -35,7 +35,7 @@ UAPLoop is a website where students of University of Asia Pacific (UAP) can **se
 | Web framework | Django 6.1 | Comes with login, admin panel, database tools and forms built in |
 | Database | SQLite | A single file (`db.sqlite3`), no server to install |
 | Image handling | Pillow | Django needs it to check uploaded photos are real images |
-| Design | Bootstrap 5 (from a CDN) | Ready-made responsive styles, no custom CSS needed |
+| Design | Bootstrap 5 (from a CDN) and `static/css/styles.css` | Responsive layout with a small local stylesheet |
 | Photos storage | Local folder `media/` | Simple, no cloud account needed |
 
 The older design notes written while planning the project live in `system-design/docs/`. This `docs/` folder is the beginner-friendly explanation of the finished code.

@@ -79,7 +79,7 @@ Example: a visitor opens `/listing/5/`.
 | **Context** | The dictionary of data a view passes to a template. |
 | **Decorator** | A line starting with `@` above a function that adds behavior. We use only Django's `@login_required`. |
 | **Admin site** | A ready-made management website Django builds from our models, at `/admin/`. |
-| **Static files** | CSS, JS, images that belong to the site. We load Bootstrap from a CDN instead. |
+| **Static files** | CSS and images that belong to the site. Our stylesheet and two logos live in `static/`; Bootstrap loads from a CDN. |
 | **Media files** | Files that users upload, like listing photos. Saved in `media/`. |
 | **CDN** | A public server that hosts common files like Bootstrap so we do not need to copy them. |
 | **CSRF** | A type of attack. Django blocks it with a hidden token in every form (`{% csrf_token %}`). |

@@ -22,8 +22,8 @@ Follow Rahim (seller) and Karim (buyer) through the whole system. For each step:
 
 | Does | Code | Result |
 |------|------|--------|
-| Clicks New listing, fills "Casio fx-991", Sell, Tk 800, 2 photos | `new_listing`, `ListingForm.clean` | Price present, photos valid |
-| Submits | `form.save(commit=False)`, `seller = request.user` | Listing row, `status='pending'` |
+| Clicks New listing, fills "Casio fx-991", Sell, preferred handover place "UAP campus gate", Tk 800, 2 photos | `new_listing`, `ListingForm.clean` | Handover place and price present, photos valid |
+| Clicks Submit listing | `form.save(commit=False)`, `seller = request.user` | Listing row with handover place, `status='pending'` |
 | | loop creating `ListingImage` | 2 rows, files in `media/listings/<id>/` |
 | Sees "My listings" | `my_listings` | Yellow "Pending" badge |
 
@@ -40,10 +40,10 @@ Karim opens the home page now: the calculator is **not** there, because `browse`
 | Does | Code | Result |
 |------|------|--------|
 | Registers like Rahim did | same as step 2 | |
-| Searches "casio" on the home page | `browse`, `title__icontains` | Card appears |
-| Opens the listing | `detail` | Sees "Request to buy" form |
-| Offers Tk 750 and clicks the button | `request_buy`, `BuyRequestForm` | BuyRequest row: Karim, Tk 750, pending |
-| Page reloads | `detail` with `my_request` | Now shows Rahim's name and **phone**, plus "Open chat" |
+| Searches "casio" on the Home page | `browse`, `title__icontains` | Card shows the handover place and **View item** button |
+| Opens the listing | `detail` | Sees the handover place and **Send request** form |
+| Offers Tk 750 and clicks Send request | `request_buy`, `BuyRequestForm` | BuyRequest row: Karim, Tk 750, pending |
+| Page reloads | `detail` with `my_request` | Now shows Rahim's name and **phone**, plus **Chat with seller** |
 
 ## Step 6: They chat
 
@@ -58,7 +58,7 @@ Karim opens the home page now: the calculator is **not** there, because `browse`
 
 | Does | Code | Result |
 |------|------|--------|
-| My listings > Requests (1) > Accept | `listing_requests`, `accept_request` | BuyRequest `accepted`, Listing `is_sold=True` |
+| My listings > View requests (1) > Accept | `listing_requests`, `accept_request` | BuyRequest `accepted`, Listing `is_sold=True` |
 | Home page | `browse.html` | Card shows red "Sold" badge |
 | Other students open the listing | `detail.html` | "This item has been sold." No request form. |
 

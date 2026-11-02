@@ -461,7 +461,7 @@ Add the `new_messages` function and its path. Now `inbox/views.py` and `inbox/ur
 Commit: `Add endpoint that returns new chat messages`
 
 ### P4.7 Final layout
-Copy `templates/base.html` from the reference (replace the whole file). This adds the Inbox link and the footer. The CSS lines from Person 1 are already in it.
+Copy `templates/base.html`, `static/images/uaploop-logo.svg` and `static/images/uap-logo.png` from the reference (replace the whole base template). This adds the UAPLoop header logo, Home and Inbox links, action buttons, and the footer with the UAP logo and contact details. The CSS lines from Person 1 are already in the template.
 
 Commit: `Add inbox link and footer to the layout`
 

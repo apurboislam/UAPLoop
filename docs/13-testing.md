@@ -10,7 +10,7 @@ Run all tests:
 .venv/bin/python manage.py test
 ```
 
-Result at the time of writing: **16 tests, all pass.**
+The suite contains **18 tests**.
 
 Run one test:
 
@@ -48,6 +48,8 @@ self.assertContains(response, 'Page not found', status_code=404)
 |------|--------|
 | `test_post_then_approve` | A new listing is hidden until approved, then appears |
 | `test_rent_without_period_rejected` | A rent listing without a period is refused |
+| `test_new_listing_requires_handover_place` | A new listing cannot be submitted without a handover place |
+| `test_handover_place_is_saved_and_shown_on_listing_pages` | The preferred place is saved and appears on browse and detail pages |
 | `test_donate_is_free_and_marked_donated` | Donate listings show "Free" and "Donated" |
 | `test_contact_hidden_until_request_then_seller_accepts` | Phone is hidden until a request, then shown; seller can accept |
 | `test_cannot_accept_after_sold` | Once one request is accepted, a second one cannot be accepted |

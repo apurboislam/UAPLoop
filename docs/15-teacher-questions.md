@@ -16,7 +16,7 @@ Students trade things in messy Facebook groups with fake accounts and no trust. 
 Visitors (browse only), students (post, request, chat, review) and the admin (manages students, categories, approvals).
 
 **Q4. What technologies did you use and why?**
-Python and Django for the backend, because Django gives login, admin panel, forms, ORM and security built in. SQLite as the database because it is a single file with no setup. Bootstrap 5 for a responsive design without writing CSS. Pillow to verify uploaded images.
+Python and Django for the backend, because Django gives login, admin panel, forms, ORM and security built in. SQLite as the database because it is a single file with no setup. Bootstrap 5 for responsive design, plus one small local stylesheet. Pillow to verify uploaded images.
 
 **Q5. Is it a static or dynamic website?**
 Dynamic. Pages are built on the server for each request using data from the database, and they change depending on who is logged in.
@@ -136,7 +136,7 @@ To keep it simple and safe: an edited listing would need re-approval, or a selle
 Accept is for a buyer inside the app: it marks the request accepted (which enables the buyer's review) and marks the item sold. Mark sold is for items sold outside the app.
 
 **Q40. How do the four listing types differ in the code?**
-The form's `clean()` method requires a price for sell and rent, a period for rent, and "exchange for" for exchange. It clears unused fields. `price_text()` shows "Free" for donate, and `done_text()` shows Sold, Exchanged or Donated.
+Every listing also requires a preferred handover place. The form's `clean()` method requires a price for sell and rent, a period for rent, and "exchange for" for exchange. It clears unused fields. `price_text()` shows "Free" for donate, and `done_text()` shows Sold, Exchanged or Donated.
 
 ---
 
@@ -196,10 +196,10 @@ In `.env` (secret key, admin email and password), read by a small `read_env()` f
 ## G. Frontend
 
 **Q56. Is it responsive? How?**
-Yes. Bootstrap's grid classes change the number of columns by screen size (2 cards per row on phones, up to 6 on desktop), the navbar collapses on phones, tables scroll horizontally, and the viewport meta tag is set.
+Yes. Bootstrap's grid classes change the number of columns by screen size (2 cards per row on phones, 3 on medium screens and 5 on large screens), the navbar collapses on phones, tables scroll horizontally, and the viewport meta tag is set.
 
-**Q57. Why no custom CSS?**
-Project rule for simplicity. Bootstrap covers everything we need and gives a consistent look.
+**Q57. How is custom CSS used?**
+Bootstrap covers the layout and components. `static/css/styles.css` adds a few basic styles for the background, headings, paragraphs and highlight class.
 
 **Q58. How do all pages share the same navbar?**
 Template inheritance: every page `extends 'base.html'` and only fills the `content` block.
@@ -215,7 +215,7 @@ Only Bootstrap's bundle (for the collapsing navbar) and the small polling script
 ## H. Testing and quality
 
 **Q61. How did you test the project?**
-16 automated Django tests covering registration, error pages, login redirects, moderation, listing rules, contact privacy, chat privacy, the live-chat endpoint and review rules. All pass. Plus manual testing in the browser.
+18 automated Django tests covering registration, error pages, login redirects, moderation, the required handover place, listing rules, contact privacy, chat privacy, the live-chat endpoint and review rules. The manual browser walkthrough is described in `TEAM-GUIDE.md`.
 
 **Q62. Do tests touch the real database?**
 No. Django creates a temporary test database and deletes it afterwards.

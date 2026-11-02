@@ -4,10 +4,10 @@
 
 We did not want a seller's phone number visible to everyone. Instead:
 
-1. A buyer clicks **Request to buy** (and enters an amount for sell or rent).
+1. A buyer clicks **Send request** (and enters an amount for sell or rent).
 2. This creates a `BuyRequest`.
 3. Now the buyer sees the seller's name and phone, and a private chat opens.
-4. The seller sees the buyer's name, phone and offer on the "Buy requests" page.
+4. The seller sees the buyer's name, phone and offer after clicking **View requests**.
 5. The seller clicks **Accept** on the best request. The item becomes Sold and that buyer can write a review.
 
 One `BuyRequest` = one contact unlock + one chat room + one proof of purchase.
@@ -34,7 +34,7 @@ Checks: the listing must be approved, not sold, and **not your own**. `get_or_cr
 
 ## 8.3 Seeing and accepting requests
 
-- `listing_requests`: shows all requests for **your** listing (`seller=request.user` check), with buyer name, phone, amount, status, a Chat link and an Accept button.
+- `listing_requests`: shows all requests for **your** listing (`seller=request.user` check), with buyer name, phone, amount, status, an **Open chat** button and an **Accept** button.
 - `accept_request`: POST only, and the request must belong to your listing (`listing__seller=request.user`). It sets the request to `accepted` and the listing to `is_sold = True`.
 
 The Accept button only shows while the request is pending and the listing is not sold. The view also checks `is_sold` itself, so once one request is accepted, no other request can be accepted, even by sending a POST by hand.
@@ -64,8 +64,10 @@ conversations = my_conversations(request.user).annotate(last=Max('messages__crea
 ### Conversation page
 
 - Shows the item title, the other person's name and phone, all messages (yours on the right).
-- A form to send a new message. After sending, it redirects to the same page (Post/Redirect/Get).
+- **View item** and **Back to inbox** buttons, plus a **Send message** form. After sending, it redirects to the same page (Post/Redirect/Get).
 - `last_id` (the id of the newest message) is passed to the page for the live update.
+
+The inbox shows an **Open chat** button for each conversation. When it is empty, it offers **Browse listings**.
 
 ## 8.5 Live chat: how new messages appear without refreshing
 
