@@ -48,6 +48,7 @@ Flat list (no parent/child) for v1. Admin-only writes.
 | category | FK Category, PROTECT | required |
 | title | Char(120) | |
 | description | Text | |
+| handover_place | Char(200) | required preferred place to hand over the item |
 | listing_type | choices | `sell` / `exchange` / `rent` / `donate` (free, no price; "mark donated" reuses is_sold) |
 | price | Decimal(10,2) null | required for sell and rent; BDT |
 | rent_period | choices null | `day` / `week` / `month`, required for rent |

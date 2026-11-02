@@ -201,4 +201,4 @@ The star labels are built with one line: `[(n, '★' * n + '☆' * (5 - n)) for 
 
 ## 5.10 Migrations
 
-There is one migration file per app (`0001_initial.py`), 4 in total. They were generated with `makemigrations`. Never edit them by hand; change the model and generate a new one.
+Each app starts with `0001_initial.py`. The required listing handover place is included in the catalog initial migration. Later model changes get a new migration generated with `makemigrations`.

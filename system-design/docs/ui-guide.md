@@ -18,16 +18,16 @@ Page templates live inside their app: `accounts/templates/accounts/`, `catalog/t
 ## Pages
 | Page | What it has |
 |---|---|
-| Browse | Filter form (title search, category select, type select), listing cards in a `row` with `col-md-4`, simple next/previous links |
-| Listing detail | Title, price, type badge, condition, category, description, photos stacked one after another, seller name and phone (logged-in users only) |
+| Browse | Filter form (title search, category select, type select), listing cards with handover place in a `row`, simple next/previous links |
+| Listing detail | Title, price, type badge, condition, category, handover place, description, photos stacked one after another, seller name and phone (logged-in users only) |
 | Register | One form: university ID, phone, full name, email, password, confirm password |
 | Login | One form: email, password |
-| New listing | One form: category select, type select, title, description, price, rent period, exchange for, condition, photos. Note: "Your listing will appear after admin approval" |
+| New listing | One form: category select, type select, title, description, required handover place, price, rent period, exchange for, condition, photos. Note: "Your listing will appear after admin approval" |
 | My listings | `table` with title, status `badge`, reject reason, Remove link. No edit |
 | Remove listing | Small page asking "Are you sure?" with a Yes button (instead of a modal) |
 
 ## Listing card
-`card` with the cover photo on top, then title, price and type badge. Plain text "No photo" when there is none.
+`card` with the cover photo on top, then title, price, type badge and handover place. Plain text "No photo" when there is none.
 
 ## Status badges
 pending: `text-bg-warning`, approved: `text-bg-success`, rejected: `text-bg-danger`.
