@@ -16,21 +16,21 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="mainNav">
-      <ul class="navbar-nav ms-auto">
+      <ul class="navbar-nav ms-auto align-items-lg-center">
         <li class="nav-item"><a class="nav-link" href="{% url 'browse' %}">Browse</a></li>
         {% if user.is_authenticated %}
-        <li class="nav-item"><a class="nav-link" href="{% url 'new_listing' %}">New listing</a></li>
         <li class="nav-item"><a class="nav-link" href="{% url 'my_listings' %}">My listings</a></li>
         <li class="nav-item"><a class="nav-link" href="{% url 'inbox' %}">Inbox</a></li>
-        <li class="nav-item">
+        <li class="nav-item my-1 my-lg-0 ms-lg-2"><a class="btn btn-primary btn-sm" href="{% url 'new_listing' %}">New listing</a></li>
+        <li class="nav-item my-1 my-lg-0 ms-lg-2">
           <form method="post" action="{% url 'logout' %}">
             {% csrf_token %}
-            <button class="btn btn-link nav-link" type="submit">Logout</button>
+            <button class="btn btn-outline-light btn-sm" type="submit">Logout</button>
           </form>
         </li>
         {% else %}
         <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
-        <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">Register</a></li>
+        <li class="nav-item my-1 my-lg-0 ms-lg-2"><a class="btn btn-primary btn-sm" href="{% url 'register' %}">Register</a></li>
         {% endif %}
       </ul>
     </div>

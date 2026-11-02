@@ -23,21 +23,22 @@
 <div class="card">
   <div class="card-body">
     {% if is_seller %}
-    <a href="{% url 'listing_requests' listing.pk %}">See buy requests</a>
+    <a class="btn btn-primary" href="{% url 'listing_requests' listing.pk %}">View requests</a>
     {% elif my_request %}
     Seller: {{ listing.seller.full_name }}<br>Phone: {{ listing.seller.phone }}<br>
     Your request{% if my_request.amount %}: Tk {{ my_request.amount|floatformat:"-2" }}{% endif %} ({{ my_request.get_status_display }})<br>
-    <a href="{% url 'conversation' my_request.pk %}">Open chat with the seller</a>
+    <a class="btn btn-primary mt-2" href="{% url 'conversation' my_request.pk %}">Chat with seller</a>
     {% elif listing.is_sold %}
     This item has been {{ listing.done_text|lower }}.
     {% elif user.is_authenticated %}
     <form method="post" action="{% url 'request_buy' listing.pk %}">{% csrf_token %}
       {% if listing.listing_type == 'sell' or listing.listing_type == 'rent' %}{{ request_form.as_p }}{% endif %}
-      <button class="btn btn-primary" type="submit">Request to buy</button>
+      <button class="btn btn-primary" type="submit">Send request</button>
     </form>
     <p class="mt-2 mb-0">Send a request to see the seller's contact.</p>
     {% else %}
-    <a href="{% url 'login' %}">Login</a> to request this item.
+    <p>Log in to request this item.</p>
+    <a class="btn btn-primary" href="{% url 'login' %}?next={{ request.path|urlencode }}">Log in to request</a>
     {% endif %}
   </div>
 </div>
